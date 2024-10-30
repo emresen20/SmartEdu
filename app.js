@@ -1,13 +1,29 @@
-const express= require('express')
+const express = require("express");
+const app = express();
 
-const app= express();
+//Temlate Engine 
+app.set("view engine", "ejs");
+
+//Middlewares
+app.use(express.static("public"))
+
+
+
+//Routes
+app.get("/", (req, res) => {
+  res.status(200).render('index',{
+    page_name: "index"
+  })
+});
+
+app.get("/about", (req, res) => {
+    res.status(200).render('about',{
+        page_name: "about"
+      })
+  });
+
 
 const port = 3000;
-
-app.get('/',(req,res)=>{
-    res.send('ındex Sayfası')
-})
-
-app.listen(port,()=>{
-    console.log('App started on port ')
+app.listen(port, () => {
+  console.log("App started on port ");
 });
