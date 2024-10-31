@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const slugify = require('slugify')
+
 const CourseSchema = new Schema({
   name: {
     type: String,
@@ -19,6 +20,10 @@ const CourseSchema = new Schema({
   slug:{ // id kısmı gözükmesin isim olsun diye mongıoya kaydetmeden aşağıdaki fonksiyonla oluşturduk
     type:String,
     unique:true
+  },
+  category:{ //category modeli ile kurs modeli arasında bir ilişki kurmuş olduk
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Category'
   }
 });
 
