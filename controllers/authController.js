@@ -28,7 +28,9 @@ exports.loginUser = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
         if (isPasswordCorrect) {
           // Kullanıcı girişi başarılı
-          res.status(200).send("You are Logged in");
+          req.session.userID = user._id;
+          res.status(200).redirect('/')
+
         } else {
           // Şifre yanlış
           res.status(401).send("Incorrect password");
