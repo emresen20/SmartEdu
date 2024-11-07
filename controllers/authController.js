@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt= require('bcrypt');
-const Category=require('../models/Category')
+const Category=require('../models/Category');
+const Course = require("../models/Course");
 
 exports.createUser = async (req, res) => {
   try {
@@ -55,10 +56,12 @@ exports.loginUser = async (req, res) => {
   exports.getDashboardPage =  async (req, res) => {
      const  user=await User.findOne({_id:req.session.userID})
      const categories= await Category.find();
+     const courses= await Course.find({user:req.session.userID}) // burada her öğretmenin kendi kursunda getirmesini sağladık
 
     res.status(200).render("dashboard", {
       page_name: "dashboard",
       user:user,
-      categories:categories
+      categories:categories,
+      courses
     });
   };

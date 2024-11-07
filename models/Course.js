@@ -24,6 +24,10 @@ const CourseSchema = new Schema({
   category:{ //category modeli ile kurs modeli arasında bir ilişki kurmuş olduk
     type:mongoose.Schema.Types.ObjectId,
     ref:'Category'
+  },
+  user:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User'
   }
 });
 

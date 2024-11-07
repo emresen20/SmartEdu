@@ -3527,11 +3527,13 @@ blockquote.default {
 	margin-top: 30px;
 }
 .author-bio {
-    display: block;
-    float: left;
+    display: flex;
     padding: 20px;
     position: relative;
     width: 75%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 }
 .author-desc{
 	background: #eea412;
