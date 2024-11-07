@@ -1,5 +1,6 @@
 const Course = require("../models/Course");
 const Category = require("../models/Category");
+const User = require("../models/User");
 
 exports.createCourse = async (req, res) => {
   try {
@@ -32,7 +33,7 @@ exports.getAllCourses = async (req, res) => {
       }
     }
 
-    const courses = await Course.find(filter).sort({ createdAt: -1 }); // Filtreyi burada uygular
+    const courses = await Course.find(filter).sort({ createdAt: -1 }).populate('user'); // Filtreyi burada uygular
     const categories = await Category.find(); // Tüm kategorileri getirir
 
     res.status(200).render("courses", {
@@ -83,6 +84,21 @@ exports.getAllCourses = async (req, res) => {
         course:course,
         page_name: "courses",
       })
+    } catch(error) {
+      res.status(400).json({
+        status: "faild",
+        error,
+      });
+    }
+  };
+
+  exports.enrollCourse = async (req, res) => {
+    try {
+    const user= await User.findById(req.session.userID);
+    await user.courses.push({_id:req.body.course_id})
+    await user.save();
+  
+      res.status(200).redirect('/users/dashboard')
     } catch(error) {
       res.status(400).json({
         status: "faild",
