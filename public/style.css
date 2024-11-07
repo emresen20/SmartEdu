@@ -3846,6 +3846,13 @@ a.link-style3 {
 .course-item:hover .course-title a {
 	color: #eea412;
 }
+.course-desc {
+    max-height: 80px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Görüntülenecek satır sayısı */
+    -webkit-box-orient: vertical;
+  }
 .course-br{
 	border: 1px solid #4babb1;
 	padding: 15px;
