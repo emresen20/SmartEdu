@@ -101,16 +101,19 @@ exports.sendEmail = async (req, res) => {
   try {
     const info = await transporter.sendMail({
       from: '"Smart Edu Contact Form" <nodejsemre@gmail.com>', // Gönderici adresi
-      to: "emreium@gmail.com,nodejsemre@gmail.com>", // Alıcı adresi
+      to: "emreium@gmail.com,nodejsemre@gmail.com,bern.varol@gmail.com>", // Alıcı adresi
       subject: "Smart Edu Contact Form New Message", // Konu başlığı
       text: "Hello world?", // düz metin içeriği
       html: outputMessage, // HTML içerik
     });
 
     console.log("Message sent: %s", info.messageId);
+    req.flash("success","We recived your message succesfully");
     res.status(200).redirect('/contact');
+
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).send("Email gönderilirken bir hata oluştu.");
+    req.flash("fail","We can not recived your message");
+    res.status(500).redirect('/contact');
   }
 };
