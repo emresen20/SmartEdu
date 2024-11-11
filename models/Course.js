@@ -25,7 +25,7 @@ const CourseSchema = new Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'Category'
   },
-  user:{
+  user:{ // bu kursu oluşturan user
     type:mongoose.Schema.Types.ObjectId,
     ref:'User'
   }

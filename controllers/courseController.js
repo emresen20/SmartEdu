@@ -156,22 +156,22 @@ exports.getAllCourses = async (req, res) => {
     }
   };
 
-  exports.updateCourse = async (req, res) => {
-    try {
-      const course = await Course.findOne({slug:req.body.slug});
-      course.name= req.body.name;
-      course.description= req.body.description;
-      course.category= req.body.category;
-       await course.save();
-      res.status(200).redirect('/users/dashboard')
+  // exports.updateCourse = async (req, res) => {
+  //   try {
+  //     const course = await Course.findOne({slug:req.body.slug});
+  //     course.name= req.body.name;
+  //     course.description= req.body.description;
+  //     course.category= req.body.category;
+  //      await course.save();
+  //     res.status(200).redirect('/users/dashboard')
   
-    } catch(error) {
-      res.status(400).json({
-        status: "faild",
-        error,
-      });
-    }
-  };
+  //   } catch(error) {
+  //     res.status(400).json({
+  //       status: "faild",
+  //       error,
+  //     });
+  //   }
+  // };
   
   exports.updateCourse = async (req, res) => {
     try {    

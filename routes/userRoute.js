@@ -23,5 +23,5 @@ router.route("/signup").post([
 router.route("/login").post(authController.loginUser); //localhost/users/login yapılacak post işlemi login ejs de actionda
 router.route("/logout").get(authController.logoutUser)
 router.route("/dashboard").get(authMiddleware, authController.getDashboardPage) //localhosty/users/dashboard
-
+router.route("/:id").delete(authController.deleteUser)
 module.exports = router;
